@@ -244,9 +244,12 @@ function LeadForm() {
                 className="w-full rounded-xl border border-input bg-background px-4 py-3 outline-none focus:border-primary" />
               {errors.contact && <p className="mt-1 text-sm text-destructive">{errors.contact}</p>}
             </div>
+            {errors.form && <p role="alert" className="text-sm text-destructive">{errors.form}</p>}
             <div className="mt-2 flex gap-3">
-              <Button variant="outline" type="button" onClick={() => setStep(0)} className="h-auto rounded-full border border-border px-5 py-3 text-sm hover:bg-secondary">Назад</Button>
-              <Button type="submit" className="h-auto flex-1 whitespace-normal rounded-full bg-[image:var(--gradient-primary)] px-6 py-3 font-medium text-primary-foreground transition-transform hover:scale-[1.02]">Получить решение</Button>
+              <Button variant="outline" type="button" disabled={sending} onClick={() => setStep(0)} className="h-auto rounded-full border border-border px-5 py-3 text-sm hover:bg-secondary">Назад</Button>
+              <Button type="submit" disabled={sending} className="h-auto flex-1 whitespace-normal rounded-full bg-[image:var(--gradient-primary)] px-6 py-3 font-medium text-primary-foreground transition-transform hover:scale-[1.02]">
+                {sending ? <><Loader2 className="h-4 w-4 animate-spin" /> Отправляем…</> : "Получить решение"}
+              </Button>
             </div>
           </form>
         )}
