@@ -4,6 +4,7 @@ import { z } from "zod";
 import { TechBackdrop } from "@/components/tech-backdrop";
 import { Button } from "@/components/ui/button";
 import { AutomationAdvisor } from "@/components/automation-advisor";
+import { supabase } from "@/integrations/supabase/client";
 import { ArrowRight, Bot, Workflow, Sparkles, Zap, Clock, TrendingDown, Check, Loader2, Send, Mail } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -169,11 +170,13 @@ function LeadForm() {
   const [task, setTask] = useState<number | null>(null);
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
-  const [errors, setErrors] = useState<{ name?: string; contact?: string }>({});
+  const [errors, setErrors] = useState<{ name?: string; contact?: string; form?: string }>({});
+  const [sending, setSending] = useState(false);
   const [progress, setProgress] = useState(0);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (sending || task === null) return;
     const r = schema.safeParse({ name, contact });
     if (!r.success) {
       const errs: { name?: string; contact?: string } = {};
@@ -181,6 +184,16 @@ function LeadForm() {
       return setErrors(errs);
     }
     setErrors({});
+    setSending(true);
+    const { error } = await supabase.from("leads").insert({ task: tasks[task]!.label, name: r.data.name, contact: r.data.contact });
+    setSending(false);
+    if (error) {
+      return setErrors({
+        form: error.message.includes("lead_rate_limited")
+          ? "Заявка с этим контактом уже отправлена. Попробуйте снова через 10 минут."
+          : "Не удалось отправить заявку. Проверьте данные и попробуйте ещё раз.",
+      });
+    }
     setStep(2);
     setProgress(0);
     let p = 0;
