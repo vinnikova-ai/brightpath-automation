@@ -186,7 +186,7 @@ function LeadForm() {
         </div>
 
         {step === 0 && (
-          <div className="mt-8">
+          <div key="s0" className="animate-step mt-8">
             <p className="mb-4 text-sm text-muted-foreground">Шаг 1 из 2</p>
             <h3 className="mb-5 text-lg font-medium">Какую задачу нужно решить?</h3>
             <div className="grid gap-3">
@@ -201,7 +201,7 @@ function LeadForm() {
         )}
 
         {step === 1 && (
-          <form onSubmit={submit} className="mt-8 grid gap-4" noValidate>
+          <form key="s1" onSubmit={submit} className="animate-step mt-8 grid gap-4" noValidate>
             <p className="text-sm text-muted-foreground">Шаг 2 из 2 · {task !== null && tasks[task]!.label}</p>
             <div>
               <label className="mb-2 block text-sm">Имя</label>
@@ -223,7 +223,7 @@ function LeadForm() {
         )}
 
         {step === 2 && (
-          <div className="mt-10 text-center">
+          <div key="s2" className="animate-step mt-10 text-center">
             <Loader2 className="mx-auto h-10 w-10 animate-spin text-primary" />
             <p className="mt-4 font-medium">Анализируем задачу и рассчитываем стоимость…</p>
             <p className="mt-2 text-sm text-muted-foreground">{progress < 40 ? "Оцениваем объём работ" : progress < 80 ? "Подбираем ИИ-инструменты" : "Формируем предложение"} · {progress}%</p>
@@ -231,7 +231,7 @@ function LeadForm() {
         )}
 
         {step === 3 && task !== null && (
-          <div className="mt-8 text-center">
+          <div key="s3" className="animate-step mt-8 text-center">
             <div className="mx-auto mb-4 inline-flex rounded-full bg-[image:var(--gradient-primary)] p-3 text-primary-foreground"><Check className="h-6 w-6" /></div>
             <h3 className="text-xl font-semibold">{name}, расчёт готов!</h3>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
