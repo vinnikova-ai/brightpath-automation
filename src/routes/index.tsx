@@ -6,10 +6,10 @@ import { ArrowRight, Bot, Workflow, Sparkles, Zap, Clock, TrendingDown, Check, L
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Nexora — AI & Automation Agency" },
-      { name: "description", content: "We build AI assistants and automations that eliminate manual work and scale your business." },
-      { property: "og:title", content: "Nexora — AI & Automation Agency" },
-      { property: "og:description", content: "AI assistants, workflow automation and smart bots that cut manual work by up to 80%." },
+      { title: "Nexora — агентство ИИ-автоматизации" },
+      { name: "description", content: "Внедряем ИИ-ассистентов и автоматизации, которые убирают ручной труд и масштабируют бизнес." },
+      { property: "og:title", content: "Nexora — агентство ИИ-автоматизации" },
+      { property: "og:description", content: "LLM-ассистенты, автоматизация процессов и умные боты — до 80% меньше ручной работы." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -23,12 +23,12 @@ function Index() {
       <div className="pointer-events-none fixed inset-0 -z-0 bg-[image:var(--gradient-glow)]" />
       <header className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
         <span className="font-display text-xl font-semibold tracking-tight">nexora<span className="text-primary">.ai</span></span>
-        <a href="#calc" className="rounded-full border border-border px-4 py-2 text-sm hover:bg-secondary">Get estimate</a>
+        <a href="#calc" className="rounded-full border border-border px-4 py-2 text-sm hover:bg-secondary">Рассчитать стоимость</a>
       </header>
       <Hero />
       <Benchmark />
       <LeadForm />
-      <footer className="relative z-10 border-t border-border py-8 text-center text-sm text-muted-foreground">© 2026 Nexora AI Agency</footer>
+      <footer className="relative z-10 border-t border-border py-8 text-center text-sm text-muted-foreground">© 2026 Nexora — агентство ИИ-автоматизации</footer>
     </div>
   );
 }
@@ -37,22 +37,22 @@ function Hero() {
   return (
     <section className="relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-16 text-center md:pt-28">
       <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card/50 px-4 py-1.5 text-xs text-muted-foreground backdrop-blur">
-        <Sparkles className="h-3.5 w-3.5 text-primary" /> AI systems shipped in 14 days
+        <Sparkles className="h-3.5 w-3.5 text-primary" /> ИИ-системы под ключ за 14 дней
       </div>
       <h1 className="font-display mx-auto max-w-4xl text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
-        Replace manual work with <span className="bg-[image:var(--gradient-primary)] bg-clip-text text-transparent">intelligent automation</span>
+        Замените рутинную работу <span className="bg-[image:var(--gradient-primary)] bg-clip-text text-transparent">интеллектуальной автоматизацией</span>
       </h1>
       <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-        We design and deploy LLM assistants, workflow automations and smart bots that cut operational costs by up to 80% — so your team focuses on growth.
+        Проектируем и запускаем LLM-ассистентов, автоматизацию процессов и умных ботов, которые снижают операционные расходы до 80% — чтобы ваша команда занималась ростом.
       </p>
       <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a href="#calc" className="group inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-primary)] px-8 py-4 font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:scale-105">
-          Calculate my automation <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          Рассчитать автоматизацию <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </a>
-        <a href="#features" className="px-6 py-4 text-sm text-muted-foreground hover:text-foreground">See how it works</a>
+        <a href="#features" className="px-6 py-4 text-sm text-muted-foreground hover:text-foreground">Как это работает</a>
       </div>
       <div className="mx-auto mt-20 grid max-w-3xl grid-cols-3 gap-4 border-t border-border pt-10">
-        {[["120+", "automations live"], ["80%", "less manual work"], ["14 days", "to launch"]].map(([v, l]) => (
+        {[["120+", "запущенных автоматизаций"], ["80%", "меньше ручного труда"], ["14 дней", "до запуска"]].map(([v, l]) => (
           <div key={l}><div className="font-display text-2xl font-semibold sm:text-4xl">{v}</div><div className="mt-1 text-xs text-muted-foreground sm:text-sm">{l}</div></div>
         ))}
       </div>
@@ -61,26 +61,26 @@ function Hero() {
 }
 
 const features = [
-  { icon: Bot, title: "LLM Assistants", text: "Custom AI agents trained on your knowledge base handle support, sales and internal queries 24/7." },
-  { icon: Workflow, title: "Workflow Automation", text: "Connect CRMs, sheets and messengers. Data flows between tools without a single copy-paste." },
-  { icon: Zap, title: "Smart Bots & Landings", text: "Conversion-focused pages and Telegram bots that qualify leads and book calls automatically." },
+  { icon: Bot, title: "LLM-ассистенты", text: "ИИ-агенты, обученные на вашей базе знаний, закрывают вопросы поддержки, продаж и внутренние запросы 24/7." },
+  { icon: Workflow, title: "Автоматизация процессов", text: "Соединяем CRM, таблицы и мессенджеры. Данные ходят между инструментами без единого копирования." },
+  { icon: Zap, title: "Умные боты и лендинги", text: "Конверсионные страницы и Telegram-боты, которые квалифицируют лиды и записывают на созвон автоматически." },
 ];
 
 const rows = [
-  ["Lead processing", "4 h / day", "5 min / day"],
-  ["Customer support replies", "2 h response", "Instant"],
-  ["Reporting & data entry", "10 h / week", "Automated"],
-  ["Operational cost", "100%", "~20%"],
+  ["Обработка лидов", "4 ч / день", "5 мин / день"],
+  ["Ответы в поддержке", "2 ч ожидания", "Мгновенно"],
+  ["Отчёты и ввод данных", "10 ч / неделя", "Автоматически"],
+  ["Операционные расходы", "100%", "~20%"],
 ];
 
 function Benchmark() {
   return (
     <section id="features" className="relative z-10 mx-auto max-w-6xl px-6 py-24">
-      <h2 className="font-display text-center text-3xl font-semibold tracking-tight sm:text-5xl">Manual work, benchmarked</h2>
-      <p className="mx-auto mt-4 max-w-xl text-center text-muted-foreground">How AI tools transform everyday operations.</p>
+      <h2 className="font-display text-center text-3xl font-semibold tracking-tight sm:text-5xl">Рутина в цифрах</h2>
+      <p className="mx-auto mt-4 max-w-xl text-center text-muted-foreground">Как ИИ-инструменты меняют повседневные операции.</p>
       <div className="mt-14 overflow-hidden rounded-3xl border border-border bg-card/60 backdrop-blur">
         <div className="grid grid-cols-3 border-b border-border px-4 py-4 text-xs uppercase tracking-wider text-muted-foreground sm:px-8">
-          <span>Process</span><span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5" /> Manual</span><span className="flex items-center gap-1 text-primary"><TrendingDown className="h-3.5 w-3.5" /> With AI</span>
+          <span>Процесс</span><span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5" /> Вручную</span><span className="flex items-center gap-1 text-primary"><TrendingDown className="h-3.5 w-3.5" /> С ИИ</span>
         </div>
         {rows.map(([p, m, a]) => (
           <div key={p} className="grid grid-cols-3 border-b border-border px-4 py-5 text-sm last:border-0 sm:px-8 sm:text-base">
