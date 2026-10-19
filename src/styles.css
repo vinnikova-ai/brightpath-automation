@@ -309,6 +309,33 @@
   50% { transform: translate3d(20%, 12%, 0) scale(1.3); opacity: 0.35; }
   75% { transform: translate3d(-8%, 18%, 0) scale(1.15); opacity: 0.25; }
 }
+.liquid-backdrop[data-paused] .liquid-mesh {
+  animation-play-state: paused;
+  will-change: auto;
+}
+/* Bound mobile raster surfaces and composite only two moving layers. */
+@media (max-width: 767px), (hover: none) and (pointer: coarse) {
+  .liquid-mesh {
+    width: min(90vw, 480px);
+    height: min(90vw, 480px);
+    animation-duration: 36s;
+  }
+  .liquid-mesh-blue,
+  .liquid-mesh-sheen {
+    display: none;
+    animation: none;
+    will-change: auto;
+  }
+  .liquid-mesh-cyan {
+    top: 0;
+    left: -15%;
+  }
+  .liquid-mesh-violet {
+    bottom: 0;
+    left: 15%;
+    animation-duration: 42s;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .liquid-mesh { animation: none; will-change: auto; }
   .liquid-page *, .liquid-page *::before, .liquid-page *::after {

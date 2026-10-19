@@ -1,7 +1,19 @@
-/** Decorative CSS-only mesh: no pointer listeners or animation render loop. */
+import { useEffect, useRef } from "react";
+
+/** CSS animates the mesh; only visibility changes need a browser listener. */
 export function LiquidBackdrop() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const syncVisibility = () => {
+      ref.current?.toggleAttribute("data-paused", document.hidden);
+    };
+    syncVisibility();
+    document.addEventListener("visibilitychange", syncVisibility);
+    return () => document.removeEventListener("visibilitychange", syncVisibility);
+  }, []);
+
   return (
-    <div className="liquid-backdrop" aria-hidden="true">
+    <div ref={ref} className="liquid-backdrop" aria-hidden="true">
       <div className="liquid-mesh liquid-mesh-cyan" />
       <div className="liquid-mesh liquid-mesh-blue" />
       <div className="liquid-mesh liquid-mesh-violet" />
