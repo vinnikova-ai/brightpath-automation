@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
-import { ArrowRight, Bot, Workflow, Sparkles, Zap, Clock, TrendingDown, Check, Loader2 } from "lucide-react";
+import { ArrowRight, Bot, Workflow, Sparkles, Zap, Clock, TrendingDown, Check, Loader2, Send, Mail } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -51,7 +51,19 @@ function Index() {
       <footer className="relative z-10 border-t border-border bg-card/40 py-12">
         <div className="mx-auto max-w-6xl px-6 text-center">
           <p className="font-display text-lg font-bold tracking-tight">Vinnikova<span className="text-primary">.AI</span></p>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <span className="text-sm font-medium text-foreground/80">Связаться со мной:</span>
+            <a href="https://t.me/vinnikova_ai" target="_blank" rel="noreferrer" className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary hover:shadow-md hover:shadow-primary/20">
+              <Send className="h-4 w-4 text-primary transition-transform duration-300 group-hover:translate-x-0.5" />
+              Telegram <span className="text-muted-foreground transition-colors duration-300 group-hover:text-primary/80">(@vinnikova_ai)</span>
+            </a>
+            <span aria-hidden className="hidden text-border sm:inline">|</span>
+            <a href="mailto:vinnikova-ai@yandex.ru" className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary hover:shadow-md hover:shadow-primary/20">
+              <Mail className="h-4 w-4 text-primary transition-transform duration-300 group-hover:scale-110" />
+              Email <span className="text-muted-foreground transition-colors duration-300 group-hover:text-primary/80">(vinnikova-ai@yandex.ru)</span>
+            </a>
+          </div>
+          <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
             © 2026 Vinnikova.AI. Проект разработан в качестве демонстрационного MVP-кейса комплексной ИИ-автоматизации для инженерного портфолио.
           </p>
           <p className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm">
