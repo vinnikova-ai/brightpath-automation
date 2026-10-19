@@ -78,10 +78,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Nexora — агентство ИИ-автоматизации" },
+      { title: "Vinnikova.AI — агентство ИИ-автоматизации" },
       { name: "description", content: "ИИ-ассистенты, боты и автоматизация процессов для вашего бизнеса." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Nexora — агентство ИИ-автоматизации" },
+      { property: "og:title", content: "Vinnikova.AI — агентство ИИ-автоматизации" },
       { property: "og:description", content: "ИИ-ассистенты, боты и автоматизация процессов для вашего бизнеса." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
