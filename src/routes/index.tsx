@@ -62,9 +62,9 @@ function Index() {
               Telegram <span className="text-muted-foreground transition-colors duration-300 group-hover:text-primary/80">(@vinnikova_ai)</span>
             </a>
             <span aria-hidden className="hidden text-border sm:inline">|</span>
-            <a href="mailto:vinnikova-ai@yandex.ru" className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary hover:shadow-md hover:shadow-primary/20">
+            <a href="mailto:evg.must88@gmail.com" className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary hover:shadow-md hover:shadow-primary/20">
               <Mail className="h-4 w-4 text-primary transition-transform duration-300 group-hover:scale-110" />
-              Email <span className="text-muted-foreground transition-colors duration-300 group-hover:text-primary/80">(vinnikova-ai@yandex.ru)</span>
+              Email <span className="text-muted-foreground transition-colors duration-300 group-hover:text-primary/80">(evg.must88@gmail.com)</span>
             </a>
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
