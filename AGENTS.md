@@ -9,6 +9,6 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Keep the decorative liquid mesh in a separate aria-hidden backdrop component with CSS-only animation and a visibility listener that pauses hidden tabs; bounded mobile layers avoid oversized raster surfaces and per-frame React work.
+- Keep the decorative landing backdrop in a separate aria-hidden component with CSS-only animation and a visibility listener that pauses hidden tabs; glass panels and the SVG node grid share one fixed-aspect stage so nodes stay on panel corners, and phones drop the costly motion.
 - Scope liquid-glass role tokens and surfaces to the landing page in the global stylesheet; preserve shared theme tokens for other screens.
 - AI recommendations use a same-origin validated public streaming route and server-only Gateway helpers; NDJSON keeps answers live and explicit Stop propagates upstream without automatic retries.

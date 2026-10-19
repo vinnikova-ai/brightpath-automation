@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
-import { LiquidBackdrop } from "@/components/liquid-backdrop";
+import { TechBackdrop } from "@/components/tech-backdrop";
 import { Button } from "@/components/ui/button";
 import { AutomationAdvisor } from "@/components/automation-advisor";
 import { ArrowRight, Bot, Workflow, Sparkles, Zap, Clock, TrendingDown, Check, Loader2, Send, Mail } from "lucide-react";
@@ -9,9 +9,9 @@ import { ArrowRight, Bot, Workflow, Sparkles, Zap, Clock, TrendingDown, Check, L
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Nexora — агентство ИИ-автоматизации" },
+      { title: "Vinnikova.AI — агентство ИИ-автоматизации" },
       { name: "description", content: "Внедряем ИИ-ассистентов и автоматизации, которые убирают ручной труд и масштабируют бизнес." },
-      { property: "og:title", content: "Nexora — агентство ИИ-автоматизации" },
+      { property: "og:title", content: "Vinnikova.AI — агентство ИИ-автоматизации" },
       { property: "og:description", content: "LLM-ассистенты, автоматизация процессов и умные боты — до 80% меньше ручной работы." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -43,9 +43,9 @@ function useReveal<T extends HTMLElement>() {
 function Index() {
   return (
     <div className="liquid-page min-h-screen overflow-x-hidden bg-background text-foreground">
-      <LiquidBackdrop />
+      <TechBackdrop />
       <header className="liquid-readable relative z-10 mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-6">
-        <span className="font-display text-xl font-semibold tracking-tight">nexora<span className="text-primary">.ai</span></span>
+        <span className="font-display text-xl font-semibold tracking-tight">Vinnikova<span className="text-primary">.AI</span></span>
         <Button asChild variant="outline" className="liquid-glass h-auto whitespace-normal rounded-full border border-border px-4 py-2 text-center text-sm hover:bg-secondary"><a href="#calc">Рассчитать стоимость</a></Button>
       </header>
       <Hero />

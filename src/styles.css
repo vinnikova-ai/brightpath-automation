@@ -187,34 +187,34 @@
   }
 }
 
-/* Liquid glass: semantic roles scoped to the landing page. */
+/* Light tech glass: semantic roles scoped to the landing page. */
 .liquid-page {
-  --background: oklch(0.155 0.018 265);
-  --foreground: oklch(0.97 0.005 260);
-  --card: rgba(255, 255, 255, 0.03);
+  --background: oklch(0.985 0.008 230);
+  --foreground: oklch(0.22 0.045 258);
+  --card: rgba(255, 255, 255, 0.62);
   --card-foreground: var(--foreground);
-  --muted: oklch(0.25 0.025 265);
-  --muted-foreground: oklch(0.8 0.018 260);
-  --secondary: rgba(255, 255, 255, 0.06);
+  --muted: oklch(0.93 0.02 235);
+  --muted-foreground: oklch(0.4 0.04 252);
+  --secondary: oklch(0.93 0.03 230 / 75%);
   --secondary-foreground: var(--foreground);
   --accent: var(--secondary);
   --accent-foreground: var(--foreground);
-  --border: oklch(0.84 0.025 260 / 18%);
-  --input: oklch(0.84 0.025 260 / 32%);
-  --primary: oklch(0.79 0.125 48);
-  --primary-foreground: oklch(0.18 0.025 48);
-  --ring: var(--primary);
-  --destructive: oklch(0.8 0.13 20);
-  --liquid-cyan: oklch(0.73 0.13 205);
-  --liquid-blue: oklch(0.55 0.19 265);
-  --liquid-violet: oklch(0.65 0.18 305);
-  --liquid-pearl: oklch(0.86 0.045 240);
-  --liquid-glass: rgba(255, 255, 255, 0.03);
-  --liquid-band: rgba(255, 255, 255, 0.03);
-  --liquid-edge: oklch(0.94 0.025 240 / 12%);
-  --liquid-shadow: 0 24px 64px oklch(0.08 0.015 265 / 28%), inset 0 1px 0 var(--liquid-edge);
-  --gradient-primary: linear-gradient(115deg, oklch(0.88 0.095 200), oklch(0.84 0.095 260), oklch(0.83 0.11 310));
-  --shadow-glow: 0 16px 48px -20px var(--liquid-cyan);
+  --border: oklch(0.45 0.07 245 / 18%);
+  --input: oklch(0.45 0.07 245 / 30%);
+  --primary: oklch(0.56 0.17 42);
+  --primary-foreground: oklch(1 0 0);
+  --ring: oklch(0.55 0.14 225);
+  --destructive: oklch(0.52 0.2 25);
+  --tech-cyan: oklch(0.78 0.13 210);
+  --tech-blue: oklch(0.48 0.18 262);
+  --tech-teal: oklch(0.7 0.11 185);
+  --tech-node: oklch(0.72 0.15 215);
+  --tech-line: oklch(0.55 0.12 240 / 38%);
+  --liquid-glass: rgba(255, 255, 255, 0.6);
+  --liquid-edge: rgba(255, 255, 255, 0.85);
+  --liquid-shadow: 0 20px 50px -18px oklch(0.4 0.09 245 / 22%), inset 0 1px 0 var(--liquid-edge);
+  --gradient-primary: linear-gradient(115deg, oklch(0.52 0.13 215), oklch(0.44 0.19 262), oklch(0.5 0.1 190));
+  --shadow-glow: 0 18px 48px -18px oklch(0.55 0.16 230 / 60%);
   isolation: isolate;
   position: relative;
   letter-spacing: 0;
@@ -222,122 +222,149 @@
 }
 
 .liquid-page .tracking-tight { letter-spacing: 0; }
-.liquid-backdrop {
+
+.tech-backdrop {
   position: fixed;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
-  background: var(--background);
+  background: linear-gradient(180deg, oklch(0.995 0.004 230) 0%, oklch(0.965 0.025 228) 45%, oklch(0.935 0.045 232) 100%);
 }
-.liquid-mesh {
+.tech-glow {
   position: absolute;
-  width: 60vmax;
-  height: 60vmax;
+  width: 55vmax;
+  height: 55vmax;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.25;
   will-change: transform, opacity;
-  animation: liquid-orbit 24s ease-in-out infinite;
+  animation: tech-pulse 14s ease-in-out infinite alternate;
 }
-.liquid-mesh-cyan {
-  top: -20%;
-  left: -15%;
-  background: radial-gradient(circle, var(--liquid-cyan) 0%, var(--liquid-blue) 45%, transparent 70%);
-  animation-delay: -4s;
+.tech-glow-1 {
+  top: -22vmax;
+  left: 18%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, oklch(0.88 0.09 210 / 55%) 35%, transparent 68%);
 }
-.liquid-mesh-blue {
+.tech-glow-2 {
   top: 5%;
-  right: -18%;
-  background: radial-gradient(circle, var(--liquid-blue) 0%, var(--liquid-cyan) 40%, transparent 70%);
-  animation-direction: reverse;
-  animation-duration: 30s;
-  animation-delay: -17s;
+  right: -18vmax;
+  background: radial-gradient(circle, oklch(0.85 0.12 205 / 60%) 0%, oklch(0.8 0.1 240 / 25%) 40%, transparent 68%);
+  animation-delay: -5s;
 }
-.liquid-mesh-violet {
-  bottom: -25%;
-  left: 5%;
-  background: radial-gradient(circle, var(--liquid-violet) 0%, var(--liquid-blue) 45%, transparent 70%);
-  animation-duration: 28s;
-  animation-delay: -12s;
+.tech-glow-3 {
+  top: 40%;
+  left: -20vmax;
+  background: radial-gradient(circle, oklch(0.86 0.1 185 / 55%) 0%, transparent 65%);
+  animation-delay: -9s;
 }
-.liquid-mesh-sheen {
-  width: 45vmax;
-  height: 45vmax;
-  bottom: -15%;
-  right: -10%;
-  background: radial-gradient(circle, var(--liquid-pearl) 0%, var(--liquid-cyan) 35%, transparent 70%);
-  animation-direction: reverse;
-  animation-duration: 32s;
-  animation-delay: -19s;
+.tech-glow-4 {
+  bottom: -25vmax;
+  right: 10%;
+  background: radial-gradient(circle, oklch(0.82 0.1 250 / 45%) 0%, transparent 65%);
+  animation-delay: -3s;
 }
-.liquid-backdrop-tint {
+.tech-stage {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: max(100vw, 150vh);
+  aspect-ratio: 1440 / 900;
+  translate: -50% 0;
+  will-change: transform;
+  animation: tech-float 26s ease-in-out infinite alternate;
+}
+.tech-panel {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 6px;
+  transform: skewX(-22deg);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 24px 60px -28px oklch(0.45 0.14 240 / 45%), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+.tech-panel-cyan {
+  background: linear-gradient(135deg, oklch(0.8 0.12 210 / 34%), oklch(0.85 0.08 220 / 12%));
+}
+.tech-panel-blue {
+  background: linear-gradient(135deg, oklch(0.55 0.17 262 / 24%), oklch(0.7 0.12 245 / 10%));
+}
+.tech-panel-teal {
+  background: linear-gradient(135deg, oklch(0.72 0.11 185 / 30%), oklch(0.85 0.07 195 / 10%));
+}
+.tech-grid {
   position: absolute;
   inset: 0;
-  background: transparent;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+}
+.tech-lines line {
+  stroke: var(--tech-line);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.tech-node {
+  fill: var(--tech-node);
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.tech-halo-twinkle {
+  animation: tech-twinkle 6s ease-in-out infinite;
+}
+/* Soft white veil keeps hero and section text crisp over the tinted panels. */
+.tech-veil {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(70% 45% at 50% 32%, rgba(255, 255, 255, 0.42), transparent 75%);
 }
 .liquid-glass {
   background: var(--liquid-glass);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px) saturate(140%);
   border-color: var(--border);
   box-shadow: var(--liquid-shadow);
 }
 .liquid-readable {
   position: relative;
 }
-.liquid-readable::before {
-  content: "";
-  position: absolute;
-  inset: 0 calc((100% - 100vw) / 2);
-  z-index: -1;
-  pointer-events: none;
-  background: var(--liquid-band);
-  backdrop-filter: blur(20px);
-}
 .liquid-page input,
 .liquid-page textarea {
-  background: var(--liquid-glass);
-  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.75);
 }
 .liquid-page a:focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 5px;
 }
-@keyframes liquid-orbit {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.15; }
-  25% { transform: translate3d(12%, -8%, 0) scale(1.15); opacity: 0.25; }
-  50% { transform: translate3d(20%, 12%, 0) scale(1.3); opacity: 0.35; }
-  75% { transform: translate3d(-8%, 18%, 0) scale(1.15); opacity: 0.25; }
+@keyframes tech-pulse {
+  from { transform: translate3d(0, 0, 0) scale(1); opacity: 0.75; }
+  to { transform: translate3d(4%, 3%, 0) scale(1.12); opacity: 1; }
 }
-.liquid-backdrop[data-paused] .liquid-mesh {
+@keyframes tech-float {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(1.2%, -1.5%, 0) scale(1.03); }
+}
+@keyframes tech-twinkle {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+.tech-backdrop[data-paused] *,
+.tech-backdrop[data-paused] .tech-halo-twinkle {
   animation-play-state: paused;
   will-change: auto;
 }
-/* Bound mobile raster surfaces and composite only two moving layers. */
+/* Phones: keep the composition static except cheap node twinkles to protect battery. */
 @media (max-width: 767px), (hover: none) and (pointer: coarse) {
-  .liquid-mesh {
-    width: min(90vw, 480px);
-    height: min(90vw, 480px);
-    animation-duration: 36s;
-  }
-  .liquid-mesh-blue,
-  .liquid-mesh-sheen {
-    display: none;
+  .tech-glow,
+  .tech-stage {
     animation: none;
     will-change: auto;
   }
-  .liquid-mesh-cyan {
-    top: 0;
-    left: -15%;
-  }
-  .liquid-mesh-violet {
-    bottom: 0;
-    left: 15%;
-    animation-duration: 42s;
+  .tech-glow {
+    width: min(110vw, 560px);
+    height: min(110vw, 560px);
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .liquid-mesh { animation: none; will-change: auto; }
+  .tech-glow, .tech-stage, .tech-halo-twinkle { animation: none; will-change: auto; }
   .liquid-page *, .liquid-page *::before, .liquid-page *::after {
     scroll-behavior: auto;
     transition-duration: 0s;
