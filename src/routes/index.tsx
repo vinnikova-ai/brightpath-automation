@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { ArrowRight, Bot, Workflow, Sparkles, Zap, Clock, TrendingDown, Check, Loader2 } from "lucide-react";
 
@@ -17,6 +17,26 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+function useReveal<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("is-visible");
+          io.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return ref;
+}
+
 function Index() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
@@ -28,7 +48,19 @@ function Index() {
       <Hero />
       <Benchmark />
       <LeadForm />
-      <footer className="relative z-10 border-t border-border py-8 text-center text-sm text-muted-foreground">© 2026 Nexora — агентство ИИ-автоматизации</footer>
+      <footer className="relative z-10 border-t border-border bg-card/40 py-12">
+        <div className="mx-auto max-w-6xl px-6 text-center">
+          <p className="font-display text-lg font-bold tracking-tight">Vinnikova<span className="text-primary">.AI</span></p>
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            © 2026 Vinnikova.AI. Проект разработан в качестве демонстрационного MVP-кейса комплексной ИИ-автоматизации для инженерного портфолио.
+          </p>
+          <p className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm">
+            <a href="https://github.com" target="_blank" rel="noreferrer" className="font-medium text-primary transition-colors hover:text-primary/80 hover:underline">Исходный код полностью открыт на GitHub</a>
+            <span className="text-border">|</span>
+            <a href="https://career.habr.com" target="_blank" rel="noreferrer" className="font-medium text-primary transition-colors hover:text-primary/80 hover:underline">ИТ-витрина на Хабр Карьере</a>
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
