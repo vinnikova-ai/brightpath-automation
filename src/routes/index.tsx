@@ -118,15 +118,15 @@ function LeadForm() {
   const [task, setTask] = useState<number | null>(null);
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<{ name?: string; contact?: string }>({});
   const [progress, setProgress] = useState(0);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     const r = schema.safeParse({ name, contact });
     if (!r.success) {
-      const errs: Record<string, string> = {};
-      r.error.issues.forEach((i) => (errs[String(i.path[0])] = i.message));
+      const errs: { name?: string; contact?: string } = {};
+      r.error.issues.forEach((i) => ((errs as Record<string, string>)[String(i.path[0])] = i.message));
       return setErrors(errs);
     }
     setErrors({});
@@ -167,7 +167,7 @@ function LeadForm() {
 
         {step === 1 && (
           <form onSubmit={submit} className="mt-8 grid gap-4" noValidate>
-            <p className="text-sm text-muted-foreground">Шаг 2 из 2 · {task !== null && tasks[task].label}</p>
+            <p className="text-sm text-muted-foreground">Шаг 2 из 2 · {task !== null && tasks[task]!.label}</p>
             <div>
               <label className="mb-2 block text-sm">Имя</label>
               <input value={name} onChange={(e) => setName(e.target.value)} maxLength={100} placeholder="Как к вам обращаться?"
@@ -200,8 +200,8 @@ function LeadForm() {
             <div className="mx-auto mb-4 inline-flex rounded-full bg-[image:var(--gradient-primary)] p-3 text-primary-foreground"><Check className="h-6 w-6" /></div>
             <h3 className="text-xl font-semibold">{name}, расчёт готов!</h3>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-border p-4"><div className="text-sm text-muted-foreground">Стоимость</div><div className="font-display mt-1 text-2xl font-semibold text-primary">{tasks[task].price}</div></div>
-              <div className="rounded-2xl border border-border p-4"><div className="text-sm text-muted-foreground">Срок запуска</div><div className="font-display mt-1 text-2xl font-semibold">{tasks[task].days}</div></div>
+              <div className="rounded-2xl border border-border p-4"><div className="text-sm text-muted-foreground">Стоимость</div><div className="font-display mt-1 text-2xl font-semibold text-primary">{tasks[task]!.price}</div></div>
+              <div className="rounded-2xl border border-border p-4"><div className="text-sm text-muted-foreground">Срок запуска</div><div className="font-display mt-1 text-2xl font-semibold">{tasks[task]!.days}</div></div>
             </div>
             <p className="mt-6 text-sm text-muted-foreground">Мы свяжемся с вами по контакту {contact} в течение 1 часа с детальным решением.</p>
             <button onClick={() => { setStep(0); setTask(null); setName(""); setContact(""); }} className="mt-6 text-sm text-primary hover:underline">Новый расчёт</button>
