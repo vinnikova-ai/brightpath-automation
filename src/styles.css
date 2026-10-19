@@ -202,7 +202,6 @@
   --border: oklch(0.84 0.025 260 / 18%);
   --input: oklch(0.84 0.025 260 / 32%);
   --primary: oklch(0.79 0.125 48);
-  --primary-foreground: oklch(0.18 0.025  forty);
   --primary-foreground: oklch(0.18 0.025 48);
   --ring: var(--primary);
   --destructive: oklch(0.8 0.13 20);
