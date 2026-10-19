@@ -66,8 +66,9 @@ function Index() {
 }
 
 function Hero() {
+  const ref = useReveal<HTMLElement>();
   return (
-    <section className="relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-16 text-center md:pt-28">
+    <section ref={ref} className="reveal relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-16 text-center md:pt-28">
       <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card/50 px-4 py-1.5 text-xs text-muted-foreground backdrop-blur">
         <Sparkles className="h-3.5 w-3.5 text-primary" /> ИИ-системы под ключ за 14 дней
       </div>
@@ -106,8 +107,9 @@ const rows = [
 ];
 
 function Benchmark() {
+  const ref = useReveal<HTMLElement>();
   return (
-    <section id="features" className="relative z-10 mx-auto max-w-6xl px-6 py-24">
+    <section id="features" ref={ref} className="reveal relative z-10 mx-auto max-w-6xl px-6 py-24">
       <h2 className="font-display text-center text-3xl font-semibold tracking-tight sm:text-5xl">Рутина в цифрах</h2>
       <p className="mx-auto mt-4 max-w-xl text-center text-muted-foreground">Как ИИ-инструменты меняют повседневные операции.</p>
       <div className="mt-14 overflow-hidden rounded-3xl border border-border bg-card/60 backdrop-blur">
@@ -146,6 +148,7 @@ const schema = z.object({
 });
 
 function LeadForm() {
+  const ref = useReveal<HTMLElement>();
   const [step, setStep] = useState(0);
   const [task, setTask] = useState<number | null>(null);
   const [name, setName] = useState("");
@@ -175,7 +178,7 @@ function LeadForm() {
   const pct = step === 0 ? 33 : step === 1 ? 66 : 100;
 
   return (
-    <section id="calc" className="relative z-10 mx-auto max-w-2xl px-6 py-24">
+    <section id="calc" ref={ref} className="reveal relative z-10 mx-auto max-w-2xl px-6 py-24">
       <div className="rounded-3xl border border-border bg-card/70 p-6 shadow-[var(--shadow-glow)] backdrop-blur sm:p-10">
         <h2 className="font-display text-center text-2xl font-semibold tracking-tight sm:text-4xl">Рассчитать стоимость автоматизации</h2>
         <div className="mt-6 h-1 overflow-hidden rounded-full bg-secondary">
