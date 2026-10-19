@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
+import { LiquidBackdrop } from "@/components/liquid-backdrop";
+import { Button } from "@/components/ui/button";
 import { ArrowRight, Bot, Workflow, Sparkles, Zap, Clock, TrendingDown, Check, Loader2, Send, Mail } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -39,16 +41,16 @@ function useReveal<T extends HTMLElement>() {
 
 function Index() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
-      <div className="pointer-events-none fixed inset-0 -z-0 bg-[image:var(--gradient-glow)]" />
-      <header className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+    <div className="liquid-page min-h-screen overflow-x-hidden bg-background text-foreground">
+      <LiquidBackdrop />
+      <header className="liquid-readable relative z-10 mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-6">
         <span className="font-display text-xl font-semibold tracking-tight">nexora<span className="text-primary">.ai</span></span>
-        <a href="#calc" className="rounded-full border border-border px-4 py-2 text-sm hover:bg-secondary">Рассчитать стоимость</a>
+        <Button asChild variant="outline" className="liquid-glass h-auto whitespace-normal rounded-full border border-border px-4 py-2 text-center text-sm hover:bg-secondary"><a href="#calc">Рассчитать стоимость</a></Button>
       </header>
       <Hero />
       <Benchmark />
       <LeadForm />
-      <footer className="relative z-10 border-t border-border bg-card/40 py-12">
+      <footer className="liquid-glass relative z-10 border-t border-border py-12">
         <div className="mx-auto max-w-6xl px-6 text-center">
           <p className="font-display text-lg font-bold tracking-tight">Vinnikova<span className="text-primary">.AI</span></p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
@@ -80,8 +82,8 @@ function Index() {
 function Hero() {
   const ref = useReveal<HTMLElement>();
   return (
-    <section ref={ref} className="reveal relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-16 text-center md:pt-28">
-      <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card/50 px-4 py-1.5 text-xs text-muted-foreground backdrop-blur">
+    <section ref={ref} className="liquid-readable reveal relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-16 text-center md:pt-28">
+      <div className="liquid-glass mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-xs text-muted-foreground">
         <Sparkles className="h-3.5 w-3.5 text-primary" /> ИИ-системы под ключ за 14 дней
       </div>
       <h1 className="font-display mx-auto max-w-4xl text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
@@ -91,9 +93,9 @@ function Hero() {
         Проектируем и запускаем LLM-ассистентов, автоматизацию процессов и умных ботов, которые снижают операционные расходы до 80% — чтобы ваша команда занималась ростом.
       </p>
       <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href="#calc" className="group inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-primary)] px-8 py-4 font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:scale-105">
+        <Button asChild className="group h-auto whitespace-normal rounded-full bg-[image:var(--gradient-primary)] px-8 py-4 text-base font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:scale-105"><a href="#calc">
           Рассчитать автоматизацию <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-        </a>
+        </a></Button>
         <a href="#features" className="px-6 py-4 text-sm text-muted-foreground hover:text-foreground">Как это работает</a>
       </div>
       <div className="mx-auto mt-20 grid max-w-3xl grid-cols-3 gap-4 border-t border-border pt-10">
@@ -121,10 +123,10 @@ const rows = [
 function Benchmark() {
   const ref = useReveal<HTMLElement>();
   return (
-    <section id="features" ref={ref} className="reveal relative z-10 mx-auto max-w-6xl px-6 py-24">
+    <section id="features" ref={ref} className="liquid-readable reveal relative z-10 mx-auto max-w-6xl px-6 py-24">
       <h2 className="font-display text-center text-3xl font-semibold tracking-tight sm:text-5xl">Рутина в цифрах</h2>
       <p className="mx-auto mt-4 max-w-xl text-center text-muted-foreground">Как ИИ-инструменты меняют повседневные операции.</p>
-      <div className="mt-14 overflow-hidden rounded-3xl border border-border bg-card/60 backdrop-blur">
+      <div className="liquid-glass mt-14 overflow-hidden rounded-3xl border border-border">
         <div className="grid grid-cols-3 border-b border-border px-4 py-4 text-xs uppercase tracking-wider text-muted-foreground sm:px-8">
           <span>Процесс</span><span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5" /> Вручную</span><span className="flex items-center gap-1 text-primary"><TrendingDown className="h-3.5 w-3.5" /> С ИИ</span>
         </div>
@@ -136,7 +138,7 @@ function Benchmark() {
       </div>
       <div className="mt-8 grid gap-6 md:grid-cols-3">
         {features.map(({ icon: Icon, title, text }) => (
-          <div key={title} className="group rounded-3xl border border-border bg-card/60 p-8 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-[var(--shadow-glow)]">
+          <div key={title} className="liquid-glass group rounded-3xl border border-border p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[var(--shadow-glow)]">
             <div className="mb-6 inline-flex rounded-2xl bg-[image:var(--gradient-primary)] p-3 text-primary-foreground"><Icon className="h-6 w-6" /></div>
             <h3 className="font-display text-xl font-semibold">{title}</h3>
             <p className="mt-3 text-muted-foreground">{text}</p>
@@ -191,7 +193,7 @@ function LeadForm() {
 
   return (
     <section id="calc" ref={ref} className="reveal relative z-10 mx-auto max-w-2xl px-6 py-24">
-      <div className="rounded-3xl border border-border bg-card/70 p-6 shadow-[var(--shadow-glow)] backdrop-blur sm:p-10">
+      <div className="liquid-glass rounded-3xl border border-border p-6 sm:p-10">
         <h2 className="font-display text-center text-2xl font-semibold tracking-tight sm:text-4xl">Рассчитать стоимость автоматизации</h2>
         <div className="mt-6 h-1 overflow-hidden rounded-full bg-secondary">
           <div className="h-full bg-[image:var(--gradient-primary)] transition-all duration-500" style={{ width: `${pct}%` }} />
@@ -203,10 +205,10 @@ function LeadForm() {
             <h3 className="mb-5 text-lg font-medium">Какую задачу нужно решить?</h3>
             <div className="grid gap-3">
               {tasks.map((t, i) => (
-                <button key={t.label} type="button" onClick={() => { setTask(i); setStep(1); }}
-                  className={`flex items-center justify-between rounded-2xl border px-5 py-4 text-left transition-all hover:border-primary hover:bg-secondary ${task === i ? "border-primary bg-secondary" : "border-border"}`}>
+                <Button key={t.label} variant="ghost" type="button" onClick={() => { setTask(i); setStep(1); }}
+                  className={`h-auto whitespace-normal justify-between gap-3 rounded-2xl border px-5 py-4 text-left transition-all hover:border-primary hover:bg-secondary ${task === i ? "border-primary bg-secondary" : "border-border"}`}>
                   {t.label}<ArrowRight className="h-4 w-4 text-primary" />
-                </button>
+                </Button>
               ))}
             </div>
           </div>
@@ -214,7 +216,7 @@ function LeadForm() {
 
         {step === 1 && (
           <form key="s1" onSubmit={submit} className="animate-step mt-8 grid gap-4" noValidate>
-            <p className="text-sm text-muted-foreground">Шаг 2 из 2 · {task !== null && tasks[task]!.label}</p>
+            <p className="text-sm text-muted-foreground">Шаг 2 из 2 · {task !== null && tasks[task]?.label}</p>
             <div>
               <label className="mb-2 block text-sm">Имя</label>
               <input value={name} onChange={(e) => setName(e.target.value)} maxLength={100} placeholder="Как к вам обращаться?"
@@ -228,8 +230,8 @@ function LeadForm() {
               {errors.contact && <p className="mt-1 text-sm text-destructive">{errors.contact}</p>}
             </div>
             <div className="mt-2 flex gap-3">
-              <button type="button" onClick={() => setStep(0)} className="rounded-full border border-border px-5 py-3 text-sm hover:bg-secondary">Назад</button>
-              <button type="submit" className="flex-1 rounded-full bg-[image:var(--gradient-primary)] px-6 py-3 font-medium text-primary-foreground transition-transform hover:scale-[1.02]">Получить решение</button>
+              <Button variant="outline" type="button" onClick={() => setStep(0)} className="h-auto rounded-full border border-border px-5 py-3 text-sm hover:bg-secondary">Назад</Button>
+              <Button type="submit" className="h-auto flex-1 whitespace-normal rounded-full bg-[image:var(--gradient-primary)] px-6 py-3 font-medium text-primary-foreground transition-transform hover:scale-[1.02]">Получить решение</Button>
             </div>
           </form>
         )}
@@ -247,11 +249,11 @@ function LeadForm() {
             <div className="mx-auto mb-4 inline-flex rounded-full bg-[image:var(--gradient-primary)] p-3 text-primary-foreground"><Check className="h-6 w-6" /></div>
             <h3 className="text-xl font-semibold">{name}, расчёт готов!</h3>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-border p-4"><div className="text-sm text-muted-foreground">Стоимость</div><div className="font-display mt-1 text-2xl font-semibold text-primary">{tasks[task]!.price}</div></div>
-              <div className="rounded-2xl border border-border p-4"><div className="text-sm text-muted-foreground">Срок запуска</div><div className="font-display mt-1 text-2xl font-semibold">{tasks[task]!.days}</div></div>
+              <div className="rounded-2xl border border-border p-4"><div className="text-sm text-muted-foreground">Стоимость</div><div className="font-display mt-1 text-2xl font-semibold text-primary">{tasks[task]?.price}</div></div>
+              <div className="rounded-2xl border border-border p-4"><div className="text-sm text-muted-foreground">Срок запуска</div><div className="font-display mt-1 text-2xl font-semibold">{tasks[task]?.days}</div></div>
             </div>
             <p className="mt-6 text-sm text-muted-foreground">Мы свяжемся с вами по контакту {contact} в течение 1 часа с детальным решением.</p>
-            <button onClick={() => { setStep(0); setTask(null); setName(""); setContact(""); }} className="mt-6 text-sm text-primary hover:underline">Новый расчёт</button>
+            <Button variant="link" onClick={() => { setStep(0); setTask(null); setName(""); setContact(""); }} className="mt-6 text-sm text-primary hover:underline">Новый расчёт</Button>
           </div>
         )}
       </div>
