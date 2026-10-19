@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { ArrowRight, Bot, Workflow, Sparkles, Zap, Clock, TrendingDown, Check, Loader2 } from "lucide-react";
 
@@ -17,6 +17,26 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+function useReveal<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          el.classList.add("is-visible");
+          io.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return ref;
+}
+
 function Index() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
@@ -28,14 +48,27 @@ function Index() {
       <Hero />
       <Benchmark />
       <LeadForm />
-      <footer className="relative z-10 border-t border-border py-8 text-center text-sm text-muted-foreground">© 2026 Nexora — агентство ИИ-автоматизации</footer>
+      <footer className="relative z-10 border-t border-border bg-card/40 py-12">
+        <div className="mx-auto max-w-6xl px-6 text-center">
+          <p className="font-display text-lg font-bold tracking-tight">Vinnikova<span className="text-primary">.AI</span></p>
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            © 2026 Vinnikova.AI. Проект разработан в качестве демонстрационного MVP-кейса комплексной ИИ-автоматизации для инженерного портфолио.
+          </p>
+          <p className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm">
+            <a href="https://github.com" target="_blank" rel="noreferrer" className="font-medium text-primary transition-colors hover:text-primary/80 hover:underline">Исходный код полностью открыт на GitHub</a>
+            <span className="text-border">|</span>
+            <a href="https://career.habr.com" target="_blank" rel="noreferrer" className="font-medium text-primary transition-colors hover:text-primary/80 hover:underline">ИТ-витрина на Хабр Карьере</a>
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
 
 function Hero() {
+  const ref = useReveal<HTMLElement>();
   return (
-    <section className="relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-16 text-center md:pt-28">
+    <section ref={ref} className="reveal relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-16 text-center md:pt-28">
       <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card/50 px-4 py-1.5 text-xs text-muted-foreground backdrop-blur">
         <Sparkles className="h-3.5 w-3.5 text-primary" /> ИИ-системы под ключ за 14 дней
       </div>
@@ -74,8 +107,9 @@ const rows = [
 ];
 
 function Benchmark() {
+  const ref = useReveal<HTMLElement>();
   return (
-    <section id="features" className="relative z-10 mx-auto max-w-6xl px-6 py-24">
+    <section id="features" ref={ref} className="reveal relative z-10 mx-auto max-w-6xl px-6 py-24">
       <h2 className="font-display text-center text-3xl font-semibold tracking-tight sm:text-5xl">Рутина в цифрах</h2>
       <p className="mx-auto mt-4 max-w-xl text-center text-muted-foreground">Как ИИ-инструменты меняют повседневные операции.</p>
       <div className="mt-14 overflow-hidden rounded-3xl border border-border bg-card/60 backdrop-blur">
@@ -114,6 +148,7 @@ const schema = z.object({
 });
 
 function LeadForm() {
+  const ref = useReveal<HTMLElement>();
   const [step, setStep] = useState(0);
   const [task, setTask] = useState<number | null>(null);
   const [name, setName] = useState("");
@@ -143,7 +178,7 @@ function LeadForm() {
   const pct = step === 0 ? 33 : step === 1 ? 66 : 100;
 
   return (
-    <section id="calc" className="relative z-10 mx-auto max-w-2xl px-6 py-24">
+    <section id="calc" ref={ref} className="reveal relative z-10 mx-auto max-w-2xl px-6 py-24">
       <div className="rounded-3xl border border-border bg-card/70 p-6 shadow-[var(--shadow-glow)] backdrop-blur sm:p-10">
         <h2 className="font-display text-center text-2xl font-semibold tracking-tight sm:text-4xl">Рассчитать стоимость автоматизации</h2>
         <div className="mt-6 h-1 overflow-hidden rounded-full bg-secondary">
@@ -151,7 +186,7 @@ function LeadForm() {
         </div>
 
         {step === 0 && (
-          <div className="mt-8">
+          <div key="s0" className="animate-step mt-8">
             <p className="mb-4 text-sm text-muted-foreground">Шаг 1 из 2</p>
             <h3 className="mb-5 text-lg font-medium">Какую задачу нужно решить?</h3>
             <div className="grid gap-3">
@@ -166,7 +201,7 @@ function LeadForm() {
         )}
 
         {step === 1 && (
-          <form onSubmit={submit} className="mt-8 grid gap-4" noValidate>
+          <form key="s1" onSubmit={submit} className="animate-step mt-8 grid gap-4" noValidate>
             <p className="text-sm text-muted-foreground">Шаг 2 из 2 · {task !== null && tasks[task]!.label}</p>
             <div>
               <label className="mb-2 block text-sm">Имя</label>
@@ -188,7 +223,7 @@ function LeadForm() {
         )}
 
         {step === 2 && (
-          <div className="mt-10 text-center">
+          <div key="s2" className="animate-step mt-10 text-center">
             <Loader2 className="mx-auto h-10 w-10 animate-spin text-primary" />
             <p className="mt-4 font-medium">Анализируем задачу и рассчитываем стоимость…</p>
             <p className="mt-2 text-sm text-muted-foreground">{progress < 40 ? "Оцениваем объём работ" : progress < 80 ? "Подбираем ИИ-инструменты" : "Формируем предложение"} · {progress}%</p>
@@ -196,7 +231,7 @@ function LeadForm() {
         )}
 
         {step === 3 && task !== null && (
-          <div className="mt-8 text-center">
+          <div key="s3" className="animate-step mt-8 text-center">
             <div className="mx-auto mb-4 inline-flex rounded-full bg-[image:var(--gradient-primary)] p-3 text-primary-foreground"><Check className="h-6 w-6" /></div>
             <h3 className="text-xl font-semibold">{name}, расчёт готов!</h3>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
