@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the decorative liquid mesh in a separate CSS-only, aria-hidden backdrop component; transform-based animation avoids per-frame React work.
+- Scope liquid-glass role tokens and surfaces to the landing page in the global stylesheet; preserve shared theme tokens for other screens.

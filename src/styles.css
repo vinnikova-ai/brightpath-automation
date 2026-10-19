@@ -186,3 +186,118 @@
     }
   }
 }
+
+/* Liquid glass: semantic roles scoped to the landing page. */
+.liquid-page {
+  --background: oklch(0.155 0.018 265);
+  --foreground: oklch(0.97 0.005 260);
+  --card: oklch(0.205 0.023 265);
+  --card-foreground: var(--foreground);
+  --muted: oklch(0.25 0.025 265);
+  --muted-foreground: oklch(0.8 0.018 260);
+  --secondary: oklch(0.285 0.027 265);
+  --secondary-foreground: var(--foreground);
+  --accent: var(--secondary);
+  --accent-foreground: var(--foreground);
+  --border: oklch(0.84 0.025 260 / 18%);
+  --input: oklch(0.84 0.025 260 / 32%);
+  --primary: oklch(0.79 0.125 48);
+  --primary-foreground: oklch(0.18 0.025  forty);
+  --primary-foreground: oklch(0.18 0.025 48);
+  --ring: var(--primary);
+  --destructive: oklch(0.8 0.13 20);
+  --liquid-cyan: oklch(0.73 0.13 205 / 38%);
+  --liquid-blue: oklch(0.55 0.19 265 / 40%);
+  --liquid-violet: oklch(0.65 0.18 305 / 35%);
+  --liquid-pearl: oklch(0.86 0.045 240 / 10%);
+  --liquid-glass: oklch(0.175 0.022 265 / 82%);
+  --liquid-band: oklch(0.155 0.018 265 / 58%);
+  --liquid-edge: oklch(0.94 0.025 240 / 12%);
+  --liquid-shadow: 0 24px 64px oklch(0.08 0.015 265 / 28%), inset 0 1px 0 var(--liquid-edge);
+  --gradient-primary: linear-gradient(115deg, oklch(0.88 0.095 200), oklch(0.84 0.095 260), oklch(0.83 0.11 310));
+  --shadow-glow: 0 16px 48px -20px var(--liquid-cyan);
+  isolation: isolate;
+  position: relative;
+  letter-spacing: 0;
+  background: var(--background);
+}
+
+.liquid-page .tracking-tight { letter-spacing: 0; }
+.liquid-backdrop {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  background: var(--background);
+}
+.liquid-mesh {
+  position: absolute;
+  inset: -35%;
+  filter: blur(64px);
+  will-change: transform;
+  animation: liquid-flow 28s ease-in-out infinite alternate;
+}
+.liquid-mesh-cyan {
+  background: conic-gradient(from 125deg at 38% 42%, transparent 0deg, var(--liquid-cyan) 65deg, transparent 125deg, var(--liquid-blue) 215deg, transparent 300deg);
+}
+.liquid-mesh-violet {
+  background: conic-gradient(from 35deg at 65% 58%, transparent 20deg, var(--liquid-violet) 95deg, transparent 170deg, var(--liquid-blue) 255deg, transparent 340deg);
+  animation-name: liquid-counterflow;
+  animation-duration: 34s;
+  animation-delay: -14s;
+}
+.liquid-mesh-sheen {
+  background: linear-gradient(125deg, transparent 30%, var(--liquid-pearl) 42%, transparent 49%, var(--liquid-cyan) 56%, transparent 66%);
+  animation-duration: 38s;
+  animation-delay: -19s;
+}
+.liquid-backdrop-tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, var(--liquid-band));
+}
+.liquid-glass {
+  background: var(--liquid-glass);
+  backdrop-filter: blur(28px) saturate(125%);
+  border-color: var(--border);
+  box-shadow: var(--liquid-shadow);
+}
+.liquid-readable {
+  position: relative;
+}
+.liquid-readable::before {
+  content: "";
+  position: absolute;
+  inset: 0 calc((100% - 100vw) / 2);
+  z-index: -1;
+  pointer-events: none;
+  background: var(--liquid-band);
+  backdrop-filter: blur(20px);
+}
+.liquid-page a:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 5px;
+}
+@keyframes liquid-flow {
+  0% { transform: translate3d(-4%, -3%, 0) rotate(-12deg) scale(1.04, 1); }
+  50% { transform: translate3d(5%, 3%, 0) rotate(7deg) scale(1.13, 0.96); }
+  100% { transform: translate3d(-1%, 6%, 0) rotate(18deg) scale(1.02, 1.12); }
+}
+@keyframes liquid-counterflow {
+  0% { transform: translate3d(6%, 2%, 0) rotate(15deg) scale(1.08, 1); }
+  50% { transform: translate3d(-5%, -4%, 0) rotate(-9deg) scale(0.96, 1.15); }
+  100% { transform: translate3d(2%, -6%, 0) rotate(-22deg) scale(1.12, 1.02); }
+}
+@media (max-width: 640px) {
+  .liquid-mesh { filter: blur(40px); }
+  .liquid-glass { backdrop-filter: blur(20px) saturate(120%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .liquid-mesh { animation: none; will-change: auto; }
+  .liquid-page *, .liquid-page *::before, .liquid-page *::after {
+    scroll-behavior: auto;
+    transition-duration: 0s;
+    animation: none;
+  }
+}
