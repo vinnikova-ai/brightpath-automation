@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { LiquidBackdrop } from "@/components/liquid-backdrop";
 import { Button } from "@/components/ui/button";
+import { AutomationAdvisor } from "@/components/automation-advisor";
 import { ArrowRight, Bot, Workflow, Sparkles, Zap, Clock, TrendingDown, Check, Loader2, Send, Mail } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -49,6 +50,7 @@ function Index() {
       </header>
       <Hero />
       <Benchmark />
+      <AutomationAdvisor />
       <LeadForm />
       <footer className="liquid-glass relative z-10 border-t border-border py-12">
         <div className="mx-auto max-w-6xl px-6 text-center">
