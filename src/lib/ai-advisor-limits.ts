@@ -18,7 +18,7 @@ export function rateLimitMessage(retryAfterSeconds: number) {
 export function friendlyAiError(status?: number) {
   if (status === 429) return "ИИ-консультант сейчас перегружен. Попробуйте ещё раз через минуту.";
   if (status === 402 || status === 403) return "ИИ-консультант временно недоступен. Напишите нам в Telegram — подберём сценарий вручную.";
-  if (status === 400) return "Не получилось обработать это описание. Попробуйте сформулировать задачу иначе.";
+  if (status === 400) return "Не получилось обработать запрос. Попробуйте позже или напишите нам в Telegram.";
   if (status && status >= 500) return "Сервис ИИ временно не отвечает. Попробуйте чуть позже.";
   return "Не удалось подобрать сценарий. Попробуйте позже.";
 }
