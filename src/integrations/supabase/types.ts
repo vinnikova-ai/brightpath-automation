@@ -14,6 +14,24 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_advisor_requests: {
+        Row: {
+          client_key: string
+          created_at: string
+          id: string
+        }
+        Insert: {
+          client_key: string
+          created_at?: string
+          id?: string
+        }
+        Update: {
+          client_key?: string
+          created_at?: string
+          id?: string
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           contact: string
@@ -43,7 +61,13 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      consume_ai_advisor_quota: {
+        Args: { _client_key: string; _limit: number; _window_seconds: number }
+        Returns: {
+          allowed: boolean
+          retry_after_seconds: number
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
