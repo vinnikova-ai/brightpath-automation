@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
 // Checks the live backend: anonymous visitors may only submit leads, never read or change them.
-const url = import.meta.env.VITE_SUPABASE_URL as string | undefined;
-const key = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string | undefined;
+const url = import.meta.env["VITE_SUPABASE_URL"] as string | undefined;
+const key = import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"] as string | undefined;
 const endpoint = `${url}/rest/v1/leads`;
 const headers = { apikey: key ?? "", "Content-Type": "application/json" };
 
