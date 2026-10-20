@@ -1,5 +1,20 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1792420751229,
+      "tag": "0000_create_leads",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792420813743,
+      "tag": "0001_leads_tighten_grants",
+      "breakpoints": true
+    }
+  ]
 }
