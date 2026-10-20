@@ -8,5 +8,5 @@
 - [x] Verify access rules and run security scans.
 
 # Security audit (20-point checklist)
-- [ ] Stage 1: audit report (no changes).
-- [ ] Stage 2: prioritized fix plan — waits for user's "го".
+- [x] Stage 1: audit report (no changes).
+- [ ] Stage 2/3: fixes (AI endpoint rate limit, generic AI error text, dependency updates) — waits for user's "го".
