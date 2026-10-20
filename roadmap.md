@@ -9,4 +9,6 @@
 
 # Security audit (20-point checklist)
 - [x] Stage 1: audit report (no changes).
-- [ ] Stage 2/3: fixes (AI endpoint rate limit, generic AI error text, dependency updates) — waits for user's "го".
+- [x] AI advisor limit: 5 requests/hour per address, Russian message.
+- [x] Friendly Russian AI error messages instead of technical text.
+- [x] Patched vulnerable build packages (dependency scan clean).
