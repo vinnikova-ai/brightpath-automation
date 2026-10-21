@@ -10,7 +10,7 @@ export const MVP_ADDONS = [
 export type AddonId = (typeof MVP_ADDONS)[number]["id"];
 
 export function mvpTotal(selected: readonly AddonId[]) {
-  return MVP_ADDONS.reduce((sum, addon) => (selected.includes(addon.id) ? sum + addon.price : sum), MVP_BASE.price);
+  return MVP_ADDONS.reduce<number>((sum, addon) => (selected.includes(addon.id) ? sum + addon.price : sum), MVP_BASE.price);
 }
 
 /** "110000" → "110 000 ₽" with non-breaking spaces; deterministic on server and browser. */
