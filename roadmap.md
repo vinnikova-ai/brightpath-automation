@@ -12,3 +12,8 @@
 - [x] AI advisor limit: 5 requests/hour per address, Russian message.
 - [x] Friendly Russian AI error messages instead of technical text.
 - [x] Patched vulnerable build packages (dependency scan clean).
+
+# MVP price calculator
+- [x] Live calculator with base module + 3 add-ons and formatted total.
+- [x] Quiz completion pre-checks add-ons and scrolls to the calculator.
+- [x] «Оставить заявку на концепт» saves the chosen modules and price.

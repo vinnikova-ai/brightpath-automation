@@ -14,3 +14,4 @@
 - AI recommendations use a same-origin validated public streaming route and server-only Gateway helpers; NDJSON keeps answers live and explicit Stop propagates upstream without automatic retries.
 - The AI advisor quota is enforced server-side per SHA-256-hashed client IP through a service-role-only database function with an advisory lock; it fails closed so a broken counter never allows unlimited paid AI calls.
 - Upstream AI Gateway error text is logged server-side and mapped by status to fixed visitor phrases; never forward it to the browser.
+- MVP prices live in one shared pricing module and are re-checked by a database constraint on concept requests, so a tampered browser total is rejected; change both together.
