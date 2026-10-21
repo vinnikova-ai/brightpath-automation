@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { z } from "zod";
 import { TechBackdrop } from "@/components/tech-backdrop";
 import { Button } from "@/components/ui/button";
 import { AutomationAdvisor } from "@/components/automation-advisor";
+import { MvpCalculator, type QuizResult } from "@/components/mvp-calculator";
 import { supabase } from "@/integrations/supabase/client";
+import { leadContactSchema } from "@/lib/lead-schema";
+import { formatRub, mvpTotal, presetForTask } from "@/lib/mvp-pricing";
 import { ArrowRight, Bot, Workflow, Sparkles, Zap, Clock, TrendingDown, Check, Loader2, Send, Mail } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -42,6 +44,7 @@ function useReveal<T extends HTMLElement>() {
 }
 
 function Index() {
+  const [quiz, setQuiz] = useState<QuizResult | null>(null);
   return (
     <div className="liquid-page min-h-screen overflow-x-hidden bg-background text-foreground">
       <TechBackdrop />
@@ -52,7 +55,8 @@ function Index() {
       <Hero />
       <Benchmark />
       <AutomationAdvisor />
-      <LeadForm />
+      <LeadForm onComplete={(result) => setQuiz({ ...result, id: Date.now() })} />
+      <MvpCalculator quiz={quiz} />
       <footer className="liquid-glass relative z-10 border-t border-border py-12">
         <div className="mx-auto max-w-6xl px-6 text-center">
           <p className="font-display text-lg font-bold tracking-tight">Vinnikova<span className="text-primary">.AI</span></p>
@@ -153,18 +157,12 @@ function Benchmark() {
 }
 
 const tasks = [
-  { label: "Внедрить LLM/ИИ-ассистента", price: "от 150 000 ₽", days: "14–21 день" },
-  { label: "Автоматизировать рутину", price: "от 90 000 ₽", days: "7–14 дней" },
-  { label: "Создать умный лендинг/бота", price: "от 60 000 ₽", days: "5–10 дней" },
+  { label: "Внедрить LLM/ИИ-ассистента", days: "14–21 день" },
+  { label: "Автоматизировать рутину", days: "7–14 дней" },
+  { label: "Создать умный лендинг/бота", days: "5–10 дней" },
 ];
 
-const schema = z.object({
-  name: z.string().trim().min(1, "Введите имя").max(100, "Слишком длинное имя"),
-  contact: z.string().trim().min(3, "Укажите Telegram или Email").max(255, "Слишком длинный контакт")
-    .refine((v) => /^@?[a-zA-Z0-9_]{4,32}$/.test(v) || z.string().email().safeParse(v).success, "Неверный формат Telegram или Email"),
-});
-
-function LeadForm() {
+function LeadForm({ onComplete }: { onComplete: (result: { task: string; name: string; contact: string }) => void }) {
   const ref = useReveal<HTMLElement>();
   const [step, setStep] = useState(0);
   const [task, setTask] = useState<number | null>(null);
@@ -177,7 +175,7 @@ function LeadForm() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (sending || task === null) return;
-    const r = schema.safeParse({ name, contact });
+    const r = leadContactSchema.safeParse({ name, contact });
     if (!r.success) {
       const errs: { name?: string; contact?: string } = {};
       r.error.issues.forEach((i) => ((errs as Record<string, string>)[String(i.path[0])] = i.message));
@@ -197,10 +195,11 @@ function LeadForm() {
     setStep(2);
     setProgress(0);
     let p = 0;
+    const done = { task: tasks[task]!.label, name: r.data.name, contact: r.data.contact };
     const t = setInterval(() => {
       p += 4;
       setProgress(p);
-      if (p >= 100) { clearInterval(t); setStep(3); }
+      if (p >= 100) { clearInterval(t); setStep(3); onComplete(done); }
     }, 70);
   };
 
@@ -267,7 +266,7 @@ function LeadForm() {
             <div className="mx-auto mb-4 inline-flex rounded-full bg-[image:var(--gradient-primary)] p-3 text-primary-foreground"><Check className="h-6 w-6" /></div>
             <h3 className="text-xl font-semibold">{name}, расчёт готов!</h3>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-border p-4"><div className="text-sm text-muted-foreground">Стоимость</div><div className="font-display mt-1 text-2xl font-semibold text-primary">{tasks[task]?.price}</div></div>
+              <div className="rounded-2xl border border-border p-4"><div className="text-sm text-muted-foreground">Стоимость MVP</div><div className="font-display mt-1 text-2xl font-semibold text-primary">от {formatRub(mvpTotal(presetForTask(tasks[task]!.label)))}</div></div>
               <div className="rounded-2xl border border-border p-4"><div className="text-sm text-muted-foreground">Срок запуска</div><div className="font-display mt-1 text-2xl font-semibold">{tasks[task]?.days}</div></div>
             </div>
             <p className="mt-6 text-sm text-muted-foreground">Мы свяжемся с вами по контакту {contact} в течение 1 часа с детальным решением.</p>

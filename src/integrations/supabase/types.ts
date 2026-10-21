@@ -32,6 +32,33 @@ export type Database = {
         }
         Relationships: []
       }
+      concept_requests: {
+        Row: {
+          contact: string
+          created_at: string
+          id: string
+          modules: string[]
+          name: string
+          total: number
+        }
+        Insert: {
+          contact: string
+          created_at?: string
+          id?: string
+          modules?: string[]
+          name: string
+          total: number
+        }
+        Update: {
+          contact?: string
+          created_at?: string
+          id?: string
+          modules?: string[]
+          name?: string
+          total?: number
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           contact: string
