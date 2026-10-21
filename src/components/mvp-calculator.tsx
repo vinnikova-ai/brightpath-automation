@@ -74,7 +74,7 @@ export function MvpCalculator({ quiz }: { quiz: QuizResult | null }) {
           <div className="flex items-start gap-4 rounded-2xl border border-primary/40 bg-secondary/40 px-5 py-4">
             <Checkbox checked disabled aria-label={MVP_BASE.label} className="mt-0.5 h-5 w-5 rounded-md disabled:opacity-100" />
             <div className="min-w-0 flex-1">
-              <p className="font-medium">{MVP_BASE.label}</p>
+              <p className="text-pretty font-medium">{MVP_BASE.label.replace("(aiogram 3)", "(aiogram\u00a03)")}</p>
               <p className="mt-1 inline-flex items-center gap-1 text-xs text-muted-foreground"><Lock className="h-3 w-3" /> Базовый модуль, входит всегда</p>
             </div>
             <span className="shrink-0 font-display font-semibold">{formatRub(MVP_BASE.price)}</span>
