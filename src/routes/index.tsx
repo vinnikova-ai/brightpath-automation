@@ -57,27 +57,27 @@ function Index() {
       <AutomationAdvisor />
       <LeadForm onComplete={(result) => setQuiz({ ...result, id: Date.now() })} />
       <MvpCalculator quiz={quiz} />
-      <footer className="liquid-glass relative z-10 border-t border-border py-12">
-        <div className="mx-auto max-w-6xl px-6 text-center">
+      <footer className="liquid-glass relative z-10 border-t border-border py-10 sm:py-12">
+        <div className="mx-auto max-w-6xl px-5 text-center sm:px-6">
           <p className="font-display text-lg font-bold tracking-tight">Vinnikova<span className="text-primary">.AI</span></p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <div className="mx-auto mt-6 flex w-full max-w-sm flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
             <span className="text-sm font-medium text-foreground/80">Связаться со мной:</span>
-            <a href="https://t.me/vinnikova_ai" target="_blank" rel="noreferrer" className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary hover:shadow-md hover:shadow-primary/20">
-              <Send className="h-4 w-4 text-primary transition-transform duration-300 group-hover:translate-x-0.5" />
-              Telegram <span className="text-muted-foreground transition-colors duration-300 group-hover:text-primary/80">(@vinnikova_ai)</span>
+            <a href="https://t.me/vinnikova_ai" target="_blank" rel="noreferrer" className="group inline-flex min-w-0 items-center justify-center gap-2 rounded-full border border-border bg-card px-4 py-2.5 text-sm font-medium text-foreground shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary hover:shadow-md hover:shadow-primary/20 sm:py-2">
+              <Send className="h-4 w-4 shrink-0 text-primary transition-transform duration-300 group-hover:translate-x-0.5" />
+              <span className="truncate">Telegram <span className="text-muted-foreground transition-colors duration-300 group-hover:text-primary/80">(@vinnikova_ai)</span></span>
             </a>
             <span aria-hidden className="hidden text-border sm:inline">|</span>
-            <a href="mailto:evg.must88@gmail.com" className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary hover:shadow-md hover:shadow-primary/20">
-              <Mail className="h-4 w-4 text-primary transition-transform duration-300 group-hover:scale-110" />
-              Email <span className="text-muted-foreground transition-colors duration-300 group-hover:text-primary/80">(evg.must88@gmail.com)</span>
+            <a href="mailto:evg.must88@gmail.com" className="group inline-flex min-w-0 items-center justify-center gap-2 rounded-full border border-border bg-card px-4 py-2.5 text-sm font-medium text-foreground shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary hover:shadow-md hover:shadow-primary/20 sm:py-2">
+              <Mail className="h-4 w-4 shrink-0 text-primary transition-transform duration-300 group-hover:scale-110" />
+              <span className="truncate">Email <span className="text-muted-foreground transition-colors duration-300 group-hover:text-primary/80">(evg.must88@gmail.com)</span></span>
             </a>
           </div>
-          <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          <p className="mx-auto mt-6 max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground">
             © 2026 Vinnikova.AI. Проект разработан в качестве демонстрационного MVP-кейса комплексной ИИ-автоматизации для инженерного портфолио.
           </p>
-          <p className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm">
+          <p className="mt-4 flex flex-col items-center justify-center gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-3 sm:gap-y-1">
             <a href="https://github.com" target="_blank" rel="noreferrer" className="font-medium text-primary transition-colors hover:text-primary/80 hover:underline">Исходный код полностью открыт на GitHub</a>
-            <span className="text-border">|</span>
+            <span aria-hidden className="hidden text-border sm:inline">|</span>
             <a href="https://career.habr.com" target="_blank" rel="noreferrer" className="font-medium text-primary transition-colors hover:text-primary/80 hover:underline">ИТ-витрина на Хабр Карьере</a>
           </p>
         </div>
