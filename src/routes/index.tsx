@@ -175,7 +175,7 @@ function LeadForm({ onComplete }: { onComplete: (result: { task: string; name: s
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (sending || task === null) return;
-    const r = schema.safeParse({ name, contact });
+    const r = leadContactSchema.safeParse({ name, contact });
     if (!r.success) {
       const errs: { name?: string; contact?: string } = {};
       r.error.issues.forEach((i) => ((errs as Record<string, string>)[String(i.path[0])] = i.message));
@@ -195,10 +195,11 @@ function LeadForm({ onComplete }: { onComplete: (result: { task: string; name: s
     setStep(2);
     setProgress(0);
     let p = 0;
+    const done = { task: tasks[task]!.label, name: r.data.name, contact: r.data.contact };
     const t = setInterval(() => {
       p += 4;
       setProgress(p);
-      if (p >= 100) { clearInterval(t); setStep(3); }
+      if (p >= 100) { clearInterval(t); setStep(3); onComplete(done); }
     }, 70);
   };
 
@@ -265,7 +266,7 @@ function LeadForm({ onComplete }: { onComplete: (result: { task: string; name: s
             <div className="mx-auto mb-4 inline-flex rounded-full bg-[image:var(--gradient-primary)] p-3 text-primary-foreground"><Check className="h-6 w-6" /></div>
             <h3 className="text-xl font-semibold">{name}, расчёт готов!</h3>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-border p-4"><div className="text-sm text-muted-foreground">Стоимость</div><div className="font-display mt-1 text-2xl font-semibold text-primary">{tasks[task]?.price}</div></div>
+              <div className="rounded-2xl border border-border p-4"><div className="text-sm text-muted-foreground">Стоимость MVP</div><div className="font-display mt-1 text-2xl font-semibold text-primary">от {formatRub(mvpTotal(presetForTask(tasks[task]!.label)))}</div></div>
               <div className="rounded-2xl border border-border p-4"><div className="text-sm text-muted-foreground">Срок запуска</div><div className="font-display mt-1 text-2xl font-semibold">{tasks[task]?.days}</div></div>
             </div>
             <p className="mt-6 text-sm text-muted-foreground">Мы свяжемся с вами по контакту {contact} в течение 1 часа с детальным решением.</p>
